@@ -5,6 +5,16 @@ import (
 	"net/http"
 )
 
+// handler for showSnippet
+func showSnippet(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Display a specific snippet ... "))
+}
+
+// handler for createSnippet
+func createSnippet(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Create a new snippet ... "))
+}
+
 // handler function which writes a byte slice containing "hello from snippetbox" as the response body
 func home(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello from snippetbox"))
@@ -16,6 +26,9 @@ func main() {
 	// the / URL pattern
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", home)
+	//register the handlers
+	mux.HandleFunc("/snippet", showSnippet)
+	mux.HandleFunc("/snippet/create", createSnippet)
 
 	//start a new web server on the http.listenandserve
 	log.Println("starting server on http://localhost:4000")
