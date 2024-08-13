@@ -17,6 +17,12 @@ func createSnippet(w http.ResponseWriter, r *http.Request) {
 
 // handler function which writes a byte slice containing "hello from snippetbox" as the response body
 func home(w http.ResponseWriter, r *http.Request) {
+	//check if current request URL path matches / or not
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+	}
+
 	w.Write([]byte("Hello from snippetbox"))
 }
 
