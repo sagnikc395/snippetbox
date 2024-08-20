@@ -33,3 +33,10 @@
 - Request URL paths are automatically sanitized. If the request path contains any . and .. elements or repeated slashes, it will automatically redirect the user to an equivalent clean URL.
 
 - If a subtree path has been registered and a request is received for that subtree path without a trailing slash, then the user will automatically be sent a 301 permanent redirect to the subtree path with the slash added.
+
+### Host Name Matching 
+
+- It is possible to include host names in our URL patterns.
+- This can be useful when we want to redirect all the HTTP requests to a canonical URL ,or if our application is acting as the back end for multiple sites or services.
+
+- When it comes to pattern matching,
