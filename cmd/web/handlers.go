@@ -19,7 +19,13 @@ func home(w http.ResponseWriter, r *http.Request) {
 	//parse the template using template.ParseFiles() function to read the template file into a template set
 	// if an error preent, log the detailed error message and http.Error() function to send a generic 500 ISE error to user
 
-	ts, err := template.ParseFiles("./ui/html/home.page.tmpl")
+	files := []string{
+		"./ui/html/home.page.tmpl",
+		"./ui/html/base.layout.tmpl",
+	}
+
+	//using the template.ParseFiles() to read the files and store the temlates in aset.
+	ts, err := template.ParseFiles(files...)
 	if err != nil {
 		log.Println(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
