@@ -18,5 +18,18 @@ VALUES(
         UTC_TIMESTAMP(),
         DATE_ADD(UTC_TIMESTAMP(), INTERVAL 365 DAY)
     );
+INSERT INTO snippets(title, content, created, expires)
+VALUES(
+        'Over the wintry forest',
+        'Over the wintry \nforest, winds howl in rage\n with no leaves to blow.\n\n',
+        UTC_TIMESTAMP(),
+        DATE_ADD(UTC_TIMESTAMP(), INTERVAL 365 DAY)
+    );
+INSERT INTO snippets(title, content, created, expires)
+VALUES (
+        'First autumn morning',
+        "First autumn morning\nthe mirror I state into\nshowsmy father's face.\n\n",
+        UTC_TIMESTAMP(),
+        DATE_ADD(UTC_TIMESTAMP(), INTERVAL 7 DAY)
+    );
 
-    
