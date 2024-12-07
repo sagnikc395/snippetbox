@@ -65,5 +65,20 @@ func (app *application) createSnippet(w http.ResponseWriter, r *http.Request) {
 		app.clientError(w, http.StatusMethodNotAllowed)
 		return
 	}
-	w.Write([]byte("Create a new snippet..."))
+	// w.Write([]byte("Create a new snippet..."))
+
+	//creating some variables holding dummy data. we will remove these later on during the build.
+	title := "0 snail"
+	content := "0 snail\nClimb Mount Fuji,\nBut slowly,slowly!\n\n-Kobayashi"
+	expires := "7"
+
+	//pass the data into the SnippetModel.Insert() method, receving the ID of the new record back.
+	id, err := app.snippets.Insert(title, content, expires)
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+
+	//redirect user to the relevant page for the snippet
+	http.Redirect(w, r, fmt.Sprintf("/snipept?id=%d", id), http.StatusSeeOther)
 }
