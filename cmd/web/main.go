@@ -7,6 +7,14 @@ import (
 	"os"
 )
 
+// DI for storing a holding the application-wide dependencies
+// for the web applications.
+
+type application struct {
+	errorLog *log.Logger
+	infoLog  *log.Logger
+}
+
 func main() {
 	//addr as a new command line flag , a default value and some short help text explaining what the flag controls.
 	// the value of the flag will be stored in the addr variable at runtime
@@ -26,10 +34,15 @@ func main() {
 
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
+	app := &application{
+		errorLog: errorLog,
+		infoLog:  infoLog,
+	}
+
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", home)
-	mux.HandleFunc("/snippet", showSnippet)
-	mux.HandleFunc("/snippet/create", createSnippet)
+	mux.HandleFunc("/", app.home)
+	mux.HandleFunc("/snippet", app.showSnippet)
+	mux.HandleFunc("/snippet/create", app.createSnippet)
 
 	//create a file server which will server file  out of the "./ui/static" directory
 
