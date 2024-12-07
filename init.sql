@@ -32,4 +32,3 @@ VALUES (
         UTC_TIMESTAMP(),
         DATE_ADD(UTC_TIMESTAMP(), INTERVAL 7 DAY)
     );
-
